@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TG Trucking USA | Drive With Us</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{
+    --navy:#04193d;
+    --deep:#0a2a5e;
+    --blue:#1859c9;
+    --blue-light:#3b82f6;
+    --sky:#8ec8ff;
+    --white:#ffffff;
+    --ice:#eef5ff;
+    --gray:#6b7c93;
+    --shadow: 0 20px 50px rgba(10,42,94,0.25);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--ice);
+    color:var(--navy);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.brand{font-family:'Poppins',sans-serif;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+  .container{max-width:1200px;margin:0 auto;padding:0 24px;}
+
+  /* ===== Scroll reveal ===== */
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ===== NAV ===== */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:1000;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 40px;
+    background:rgba(4,25,61,0.55);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    transition:background .3s ease, padding .3s ease;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  header.scrolled{background:rgba(4,25,61,0.92);padding:12px 40px;}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:1.4rem;color:#fff;letter-spacing:.5px;}
+  .brand .logo-img{height:46px;width:auto;}
+  .footer-brand .logo-img{height:56px;width:auto;}
+  nav ul{display:flex;gap:36px;}
+  nav a{color:#dce8ff;font-weight:500;font-size:.95rem;position:relative;padding:6px 0;transition:color .25s;}
+  nav a:hover{color:#fff;}
+  nav a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--sky);transition:width .3s;}
+  nav a:hover::after{width:100%;}
+  .nav-cta{
+    background:linear-gradient(135deg,var(--blue-light),var(--blue));
+    color:#fff !important;padding:11px 26px;border-radius:30px;font-weight:600;
+    box-shadow:0 8px 20px rgba(24,89,201,0.45);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .nav-cta:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(24,89,201,0.6);}
+  .burger{display:none;color:#fff;font-size:1.5rem;cursor:pointer;}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;align-items:center;
+    background:
+      linear-gradient(120deg, rgba(4,20,50,0.88) 10%, rgba(10,42,94,0.72) 55%, rgba(24,89,201,0.55) 100%),
+      url('https://images.unsplash.com/photo-1745956983820-6e960f7e8472?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+    overflow:hidden;
+    perspective:1400px;
+  }
+  .hero::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 80% 20%, rgba(142,200,255,0.25), transparent 60%);
+    pointer-events:none;
+  }
+  .road-glow{
+    position:absolute;bottom:-2px;left:0;right:0;height:180px;
+    background:linear-gradient(to top, rgba(4,25,61,0.95), transparent);
+    z-index:1;
+  }
+  .floaty{
+    position:absolute;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, rgba(142,200,255,0.55), rgba(24,89,201,0.05));
+    filter:blur(2px);
+    animation:float 9s ease-in-out infinite;
+    z-index:1;
+  }
+  .floaty.f1{width:120px;height:120px;top:18%;left:8%;animation-delay:0s;}
+  .floaty.f2{width:70px;height:70px;top:65%;left:18%;animation-delay:2s;}
+  .floaty.f3{width:160px;height:160px;top:30%;right:10%;animation-delay:1s;}
+  .floaty.f4{width:50px;height:50px;top:75%;right:22%;animation-delay:3.5s;}
+  @keyframes float{
+    0%,100%{transform:translateY(0) translateX(0);}
+    50%{transform:translateY(-30px) translateX(15px);}
+  }
+
+  .hero-inner{
+    position:relative;z-index:2;
+    width:100%;
+    display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;
+    padding:140px 0 80px;
+  }
+  .badge-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(142,200,255,0.4);
+    color:var(--sky);padding:8px 18px;border-radius:30px;
+    font-size:.85rem;font-weight:600;letter-spacing:.5px;margin-bottom:24px;
+    backdrop-filter:blur(6px);
+  }
+  .badge-pill i{color:#ffd166;}
+  .hero h1{
+    font-size:3.6rem;font-weight:900;color:#fff;line-height:1.12;
+    text-shadow:0 10px 30px rgba(0,0,0,0.35);
+  }
+  .hero h1 .grad{
+    background:linear-gradient(90deg,var(--sky),#c8e4ff);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lead{
+    margin-top:22px;color:#dce8ff;font-size:1.15rem;max-width:520px;line-height:1.7;
+  }
+  .hero-btns{display:flex;gap:18px;margin-top:38px;flex-wrap:wrap;}
+  .btn{
+    padding:16px 32px;border-radius:14px;font-weight:700;font-size:1rem;
+    cursor:pointer;border:none;display:inline-flex;align-items:center;gap:10px;
+    transition:transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--blue-light),var(--blue));
+    color:#fff;box-shadow:0 15px 35px rgba(24,89,201,0.5);
+  }
+  .btn-primary:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 22px 45px rgba(24,89,201,0.65);}
+  .btn-ghost{
+    background:rgba(255,255,255,0.08);color:#fff;border:1.5px solid rgba(255,255,255,0.35);
+    backdrop-filter:blur(6px);
+  }
+  .btn-ghost:hover{background:rgba(255,255,255,0.18);transform:translateY(-4px);}
+
+  .stats-row{display:flex;gap:40px;margin-top:56px;flex-wrap:wrap;}
+  .stat h3{color:#fff;font-size:2.1rem;font-weight:800;}
+  .stat span{color:#a9c4ee;font-size:.85rem;font-weight:500;letter-spacing:.3px;}
+
+  /* 3D truck card */
+  .hero-card-wrap{perspective:1200px;}
+  .hero-3d-card{
+    position:relative;
+    border-radius:26px;
+    background:linear-gradient(160deg, rgba(255,255,255,0.14), rgba(255,255,255,0.03));
+    border:1px solid rgba(255,255,255,0.25);
+    backdrop-filter:blur(10px);
+    padding:16px;
+    box-shadow:0 30px 70px rgba(0,0,0,0.45);
+    transform-style:preserve-3d;
+    transform:rotateY(-14deg) rotateX(6deg);
+    transition:transform .15s ease-out;
+  }
+  .hero-3d-card img{border-radius:18px;transform:translateZ(30px);box-shadow:0 20px 40px rgba(0,0,0,0.4);}
+  .float-chip{
+    position:absolute;background:#fff;color:var(--navy);
+    padding:14px 18px;border-radius:16px;box-shadow:0 15px 35px rgba(0,0,0,0.25);
+    display:flex;align-items:center;gap:12px;font-weight:700;font-size:.9rem;
+    transform:translateZ(70px);
+  }
+  .float-chip i{color:var(--blue);font-size:1.3rem;}
+  .chip-1{top:-24px;left:-24px;}
+  .chip-2{bottom:-20px;right:-18px;}
+  .chip-1, .chip-2{animation:chipfloat 5s ease-in-out infinite;}
+  .chip-2{animation-delay:1.5s;}
+  @keyframes chipfloat{0%,100%{transform:translateZ(70px) translateY(0);}50%{transform:translateZ(70px) translateY(-12px);}}
+
+  section{padding:110px 0;position:relative;}
+  .section-tag{
+    display:inline-block;color:var(--blue);font-weight:700;letter-spacing:2px;
+    text-transform:uppercase;font-size:.8rem;margin-bottom:14px;
+  }
+  .section-title{font-size:2.4rem;font-weight:800;color:var(--navy);margin-bottom:18px;line-height:1.25;}
+  .section-title .accent{color:var(--blue);}
+  .section-sub{color:var(--gray);font-size:1.05rem;max-width:600px;line-height:1.7;}
+  .center{text-align:center;margin-left:auto;margin-right:auto;}
+
+  /* ===== WHY US ===== */
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:60px;}
+  .why-card{
+    background:#fff;border-radius:20px;padding:34px 26px;
+    box-shadow:0 15px 40px rgba(10,42,94,0.08);
+    transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease;
+    border:1px solid rgba(24,89,201,0.06);
+  }
+  .why-card:hover{transform:translateY(-12px) rotateX(4deg);box-shadow:0 25px 55px rgba(10,42,94,0.18);}
+  .why-icon{
+    width:64px;height:64px;border-radius:16px;
+    background:linear-gradient(135deg,var(--blue-light),var(--deep));
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.6rem;
+    margin-bottom:22px;box-shadow:0 12px 25px rgba(24,89,201,0.35);
+  }
+  .why-icon i{display:block;line-height:1;}
+  .why-card h3{font-size:1.15rem;margin-bottom:10px;color:var(--navy);}
+  .why-card p{color:var(--gray);font-size:.92rem;line-height:1.6;}
+
+  /* ===== CONTACT ===== */
+  .contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:60px;max-width:760px;margin-left:auto;margin-right:auto;}
+  .contact-card{
+    background:#fff;border-radius:20px;padding:40px 30px;text-align:center;
+    box-shadow:0 15px 40px rgba(10,42,94,0.08);
+    border:1px solid rgba(24,89,201,0.06);
+    transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease;
+  }
+  .contact-card:hover{transform:translateY(-10px);box-shadow:0 25px 55px rgba(10,42,94,0.18);}
+  .contact-card .why-icon{margin:0 auto 22px;}
+  .contact-card h3{font-size:1.2rem;margin-bottom:8px;color:var(--navy);}
+  .contact-card p{color:var(--gray);font-size:.9rem;line-height:1.6;margin-bottom:18px;}
+  .contact-card .contact-value{display:inline-block;font-weight:700;color:var(--blue);font-size:1.15rem;}
+
+  /* ===== FLEET / TRUCK TYPES ===== */
+  .fleet{background:linear-gradient(180deg,#fff, var(--ice));}
+  .fleet-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:60px;}
+  .fleet-card{
+    position:relative;border-radius:22px;overflow:hidden;height:280px;
+    box-shadow:0 20px 45px rgba(10,42,94,0.15);
+    transform-style:preserve-3d;transition:transform .5s ease, box-shadow .5s ease;
+  }
+  .fleet-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 30px 60px rgba(10,42,94,0.28);}
+  .fleet-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+  .fleet-card:hover img{transform:scale(1.12);}
+  .fleet-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(4,25,61,0) 40%, rgba(4,25,61,0.92) 100%);
+    display:flex;align-items:flex-end;padding:24px;
+  }
+  .fleet-overlay h3{color:#fff;font-size:1.3rem;font-weight:700;display:flex;align-items:center;gap:10px;}
+  .fleet-overlay h3 i{color:var(--sky);}
+
+  /* ===== STEPS ===== */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:60px;counter-reset:step;}
+  .step-card{text-align:center;padding:20px;position:relative;}
+  .step-num{
+    width:56px;height:56px;border-radius:50%;margin:0 auto 20px;
+    background:linear-gradient(135deg,var(--blue-light),var(--blue));
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:1.2rem;box-shadow:0 12px 25px rgba(24,89,201,0.4);
+  }
+  .step-card h4{margin-bottom:10px;font-size:1.05rem;color:var(--navy);}
+  .step-card p{color:var(--gray);font-size:.88rem;line-height:1.6;}
+
+  /* ===== REGISTRATION FORM ===== */
+  .register{
+    background:
+      linear-gradient(120deg, rgba(4,20,50,0.93), rgba(10,42,94,0.88)),
+      url('https://images.unsplash.com/photo-1673878277238-d5703954d7ad?q=80&w=1920&auto=format&fit=crop') center/cover fixed;
+    position:relative;
+  }
+  .register::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 15% 20%, rgba(142,200,255,0.18), transparent 55%);
+  }
+  .register-wrap{position:relative;z-index:2;display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:flex-start;}
+  .register-info .section-tag{color:var(--sky);}
+  .register-info h2{color:#fff;}
+  .register-info p.section-sub{color:#c9dbf8;}
+  .info-points{margin-top:36px;display:flex;flex-direction:column;gap:22px;}
+  .info-point{display:flex;gap:16px;align-items:flex-start;}
+  .info-point i{
+    width:42px;height:42px;border-radius:12px;background:rgba(142,200,255,0.15);
+    border:1px solid rgba(142,200,255,0.35);color:var(--sky);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .info-point h4{color:#fff;font-size:1rem;margin-bottom:4px;}
+  .info-point p{color:#b9cdef;font-size:.88rem;}
+
+  .form-card{
+    background:linear-gradient(160deg, var(--blue), var(--deep));
+    border-radius:26px;padding:44px;
+    box-shadow:0 40px 90px rgba(0,0,0,0.45);
+    transform-style:preserve-3d;
+  }
+  .form-card h3{font-size:1.6rem;color:#fff;margin-bottom:28px;line-height:1.3;}
+  .form-card p.hint{color:#cfe0fb;font-size:.9rem;margin-bottom:30px;}
+  .form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .form-group{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+  .form-group.full{grid-column:1 / -1;}
+  .form-group.span-2{grid-column:span 2;}
+  .form-group label{font-size:.85rem;font-weight:700;color:#fff;}
+  .form-group label .req{color:#ff8a8a;}
+  .form-group input,.form-group select,.form-group textarea{
+    padding:13px 16px;border-radius:12px;border:1.5px solid transparent;
+    font-family:'Inter',sans-serif;font-size:.95rem;color:var(--navy);
+    background:#fff;transition:border-color .25s, box-shadow .25s;
+    width:100%;
+  }
+  .form-group select{color:var(--navy);}
+  .form-group input::placeholder{color:#93a0b8;}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+    outline:none;border-color:var(--sky);
+    box-shadow:0 0 0 4px rgba(142,200,255,0.35);
+  }
+  .form-group textarea{resize:vertical;min-height:90px;}
+  .phone-input{display:flex;gap:0;}
+  .phone-input select{
+    width:auto;flex:0 0 92px;border-radius:12px 0 0 12px;
+    border-right:1px solid #e2e8f5;padding-left:10px;padding-right:6px;font-size:.85rem;
+  }
+  .phone-input input{border-radius:0 12px 12px 0;}
+  .icon-input{position:relative;}
+  .icon-input input{padding-right:42px;}
+  .icon-input i{
+    position:absolute;right:14px;top:50%;transform:translateY(-50%);
+    color:var(--blue-light);pointer-events:none;font-size:1rem;
+  }
+  .checkbox-row{display:flex;align-items:flex-start;gap:10px;margin:8px 0 24px;}
+  .checkbox-row input{margin-top:4px;accent-color:var(--sky);}
+  .checkbox-row label{font-size:.85rem;color:#dce8fb;line-height:1.6;}
+  .checkbox-row label strong{color:#fff;}
+  .submit-btn{
+    width:100%;padding:17px;border:none;border-radius:14px;
+    background:linear-gradient(135deg,var(--blue-light),var(--blue));
+    color:#fff;font-weight:700;font-size:1.05rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    box-shadow:0 18px 40px rgba(24,89,201,0.45);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .submit-btn:hover{transform:translateY(-3px);box-shadow:0 24px 50px rgba(24,89,201,0.6);}
+  .submit-btn:active{transform:translateY(0);}
+  .form-msg{
+    margin-top:18px;padding:16px 18px;border-radius:12px;font-size:.9rem;font-weight:600;
+    display:none;align-items:center;gap:10px;
+  }
+  .form-msg.show{display:flex;}
+  .form-msg.success{background:#e7f8ee;color:#1c8a4a;border:1px solid #b6ecc9;}
+  .form-msg.error{background:#fdeaec;color:#c8283f;border:1px solid #f7c1c9;}
+
+  /* ===== SUCCESS MODAL ===== */
+  .success-overlay{
+    position:fixed;inset:0;z-index:2000;
+    background:rgba(4,20,50,0.6);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    display:flex;align-items:center;justify-content:center;
+    padding:24px;
+    opacity:0;visibility:hidden;
+    transition:opacity .3s ease, visibility .3s ease;
+    perspective:1400px;
+  }
+  .success-overlay.show{opacity:1;visibility:visible;}
+  .success-card{
+    position:relative;width:100%;max-width:440px;
+    background:linear-gradient(165deg,#ffffff,#eef5ff);
+    border-radius:28px;padding:48px 36px 36px;text-align:center;
+    box-shadow:0 60px 120px rgba(4,20,50,0.55);
+    transform:scale(.55) rotateX(-45deg) translateY(60px);
+    opacity:0;transform-style:preserve-3d;
+    transition:transform .6s cubic-bezier(.34,1.56,.64,1), opacity .4s ease;
+  }
+  .success-overlay.show .success-card{transform:scale(1) rotateX(0) translateY(0);opacity:1;}
+  .success-close{
+    position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:50%;
+    border:none;background:rgba(10,42,94,0.06);color:var(--gray);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    transition:background .2s, color .2s, transform .2s;
+  }
+  .success-close:hover{background:rgba(10,42,94,0.12);color:var(--navy);transform:rotate(90deg);}
+  .success-badge{width:110px;height:110px;margin:0 auto 24px;position:relative;display:flex;align-items:center;justify-content:center;}
+  .success-badge .ring{
+    position:absolute;inset:0;border-radius:50%;border:2px solid rgba(24,89,201,0.35);
+    animation:ringPulse 2.2s ease-out infinite;
+  }
+  .success-badge .ring:nth-child(2){animation-delay:.6s;}
+  .success-badge .spark{
+    position:absolute;top:50%;left:50%;width:8px;height:8px;margin:-4px;border-radius:2px;
+    background:var(--c,var(--sky));transform-origin:0 0;
+    transform:rotate(var(--a)) translateX(0) scale(1);
+    opacity:0;
+    animation:sparkFly .9s ease-out .3s both;
+  }
+  .success-badge .circle{
+    width:84px;height:84px;border-radius:50%;
+    background:linear-gradient(135deg,var(--blue-light),var(--blue));
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 20px 45px rgba(24,89,201,0.5);
+    position:relative;z-index:2;
+    transform:scale(0) rotateY(-180deg);
+    animation:badgePop .7s cubic-bezier(.34,1.56,.64,1) .2s both;
+  }
+  .success-badge .circle i{color:#fff;font-size:2.1rem;opacity:0;animation:iconIn .3s ease .55s forwards;}
+  @keyframes ringPulse{0%{transform:scale(.7);opacity:.8;}100%{transform:scale(1.55);opacity:0;}}
+  @keyframes badgePop{0%{transform:scale(0) rotateY(-180deg);}60%{transform:scale(1.15) rotateY(20deg);}100%{transform:scale(1) rotateY(0deg);}}
+  @keyframes iconIn{from{opacity:0;transform:scale(.5);}to{opacity:1;transform:scale(1);}}
+  @keyframes sparkFly{0%{transform:rotate(var(--a)) translateX(0) scale(1);opacity:1;}100%{transform:rotate(var(--a)) translateX(64px) scale(0);opacity:0;}}
+  .success-card h3{font-size:1.5rem;font-weight:800;color:var(--navy);margin-bottom:12px;}
+  .success-text{color:var(--gray);font-size:.95rem;line-height:1.65;margin-bottom:26px;}
+  .success-summary{
+    background:#fff;border:1px solid rgba(24,89,201,0.1);border-radius:16px;
+    padding:6px 20px;margin-bottom:28px;text-align:left;
+    box-shadow:0 10px 25px rgba(10,42,94,0.06);
+  }
+  .success-row{
+    display:flex;justify-content:space-between;gap:16px;
+    padding:12px 0;border-bottom:1px solid rgba(10,42,94,0.08);
+  }
+  .success-row:last-child{border-bottom:none;}
+  .success-label{color:var(--gray);font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.4px;}
+  .success-value{color:var(--navy);font-size:.9rem;font-weight:700;text-align:right;}
+  .success-ok{width:100%;justify-content:center;}
+
+  /* ===== CTA STRIP ===== */
+  .cta-strip{
+    background:linear-gradient(135deg,var(--blue),var(--deep));
+    padding:70px 0;text-align:center;position:relative;overflow:hidden;
+  }
+  .cta-strip::before{
+    content:'';position:absolute;width:500px;height:500px;border-radius:50%;
+    background:radial-gradient(circle, rgba(142,200,255,0.25), transparent 60%);
+    top:-250px;right:-100px;
+  }
+  .cta-strip h2{color:#fff;font-size:2.1rem;margin-bottom:16px;position:relative;}
+  .cta-strip p{color:#cfe0fb;margin-bottom:32px;position:relative;}
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--navy);color:#c9d7f0;padding:70px 0 30px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:50px;}
+  .footer-brand p{margin-top:16px;color:#93a8cc;font-size:.9rem;line-height:1.7;}
+  .footer-col h4{color:#fff;font-size:1rem;margin-bottom:20px;}
+  .footer-col ul li{margin-bottom:12px;}
+  .footer-col a{color:#93a8cc;font-size:.9rem;transition:color .2s;}
+  .footer-col a:hover{color:var(--sky);}
+  .social-row{display:flex;gap:12px;margin-top:20px;}
+  .social-row a{
+    width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.08);
+    display:flex;align-items:center;justify-content:center;transition:background .25s, transform .25s;
+  }
+  .social-row a:hover{background:var(--blue-light);transform:translateY(-4px);}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,0.1);padding-top:26px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    font-size:.85rem;color:#7f93b8;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:1000px){
+    .nav-cta{display:none;}
+    .burger{display:block;}
+    nav{
+      display:block;
+      position:absolute;top:100%;left:0;right:0;
+      max-height:0;overflow:hidden;
+      background:rgba(4,25,61,0.97);
+      backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      transition:max-height .35s ease;
+    }
+    nav.mobile-open{max-height:400px;}
+    nav ul{flex-direction:column;gap:0;padding:8px 24px 18px;}
+    nav ul li{width:100%;}
+    nav a{display:block;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.08);}
+    nav ul li:last-child a{border-bottom:none;}
+    .hero-inner{grid-template-columns:1fr;text-align:center;}
+    .hero p.lead{margin-left:auto;margin-right:auto;}
+    .hero-btns, .stats-row{justify-content:center;}
+    .hero-card-wrap{margin-top:40px;max-width:480px;margin-left:auto;margin-right:auto;}
+    .why-grid{grid-template-columns:repeat(2,1fr);}
+    .fleet-grid{grid-template-columns:repeat(2,1fr);}
+    .steps{grid-template-columns:repeat(2,1fr);}
+    .register-wrap{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .form-grid{grid-template-columns:1fr 1fr;}
+    .form-group.span-2{grid-column:span 1;}
+  }
+  @media (max-width:640px){
+    header{padding:14px 20px;}
+    .hero h1{font-size:2.4rem;}
+    .why-grid, .fleet-grid, .steps, .contact-grid{grid-template-columns:1fr;}
+    .form-grid{grid-template-columns:1fr;}
+    .form-group.span-2{grid-column:span 1;}
+    .phone-input{flex-direction:column;}
+    .phone-input select{flex:1 1 auto;border-radius:12px;border-right:none;margin-bottom:8px;}
+    .phone-input input{border-radius:12px;}
+    .footer-grid{grid-template-columns:1fr;}
+    section{padding:70px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <a href="#top" class="brand">
+    <img src="assets/logo.png" alt="TG Trucking USA" class="logo-img">
+  </a>
+  <nav id="siteNav">
+    <ul>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#fleet">Fleet</a></li>
+      <li><a href="#steps">How It Works</a></li>
+      <li><a href="#register">Register</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <a href="#register" class="nav-cta">Join as a Driver</a>
+  <div class="burger" id="navBurger"><i class="fa-solid fa-bars"></i></div>
+</header>
+
+<section class="hero" id="top">
+  <div class="floaty f1"></div>
+  <div class="floaty f2"></div>
+  <div class="floaty f3"></div>
+  <div class="floaty f4"></div>
+  <div class="container hero-inner">
+    <div>
+      <div class="badge-pill"><i class="fa-solid fa-star"></i> Trusted by drivers across all 50 states</div>
+      <h1>Haul More. <br>Earn More <span class="grad">With TG Trucking USA.</span></h1>
+      <p class="lead">We connect reliable owner operators and CDL drivers with consistent freight, fair pay, and 24/7 dispatch support. Register today and get rolling.</p>
+      <div class="hero-btns">
+        <a href="#register" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Register Now</a>
+        <a href="#why" class="btn btn-ghost"><i class="fa-solid fa-circle-play"></i> Learn More</a>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><h3>2,400+</h3><span>ACTIVE DRIVERS</span></div>
+        <div class="stat"><h3>50</h3><span>STATES COVERED</span></div>
+        <div class="stat"><h3>98%</h3><span>ON-TIME PAY</span></div>
+      </div>
+    </div>
+    <div class="hero-card-wrap">
+      <div class="hero-3d-card" id="tiltCard">
+        <img src="https://plus.unsplash.com/premium_photo-1664695368767-c42483a0bda1?q=80&w=900&auto=format&fit=crop" alt="Semi truck on the highway">
+        <div class="float-chip chip-1"><i class="fa-solid fa-money-bill-trend-up"></i> Weekly Payouts</div>
+        <div class="float-chip chip-2"><i class="fa-solid fa-headset"></i> 24/7 Dispatch</div>
+      </div>
+    </div>
+  </div>
+  <div class="road-glow"></div>
+</section>
+
+<section id="why">
+  <div class="container">
+    <div class="center" style="max-width:640px;">
+      <span class="section-tag reveal">Why Drivers Choose Us</span>
+      <h2 class="section-title reveal">Built By Truckers, <span class="accent">For Truckers</span></h2>
+      <p class="section-sub center reveal">Everything you need to keep your wheels turning and your business growing  all in one place.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon"><i class="fa-solid fa-dollar-sign"></i></div>
+        <h3>Top-Tier Rates</h3>
+        <p>Competitive rate per mile</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><i class="fa-solid fa-route"></i></div>
+        <h3>Consistent Freight</h3>
+        <p>Steady lanes and loads matched to your truck type and home base preferences.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><i class="fa-solid fa-headset"></i></div>
+        <h3>24/7 Dispatch Support</h3>
+        <p>Real people, real support day or night, we've got your back on the road.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><i class="fa-solid fa-shield-heart"></i></div>
+        <h3>Safety & Compliance</h3>
+        <p>We handle the paperwork so you can focus on driving  MC, DOT, and insurance support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="fleet" id="fleet">
+  <div class="container">
+    <div class="center" style="max-width:640px;">
+      <span class="section-tag reveal">Our Fleet</span>
+      <h2 class="section-title reveal">Every Truck Type, <span class="accent">Welcome Here</span></h2>
+      <p class="section-sub center reveal">Whatever you drive, we have freight for it.</p>
+    </div>
+    <div class="fleet-grid">
+      <div class="fleet-card reveal">
+        <img src="https://plus.unsplash.com/premium_photo-1664695368767-c42483a0bda1?q=80&w=800&auto=format&fit=crop" alt="Dry Van truck">
+        <div class="fleet-overlay"><h3><i class="fa-solid fa-truck"></i> Dry Van</h3></div>
+      </div>
+      <div class="fleet-card reveal">
+        <img src="assets/reefer.jpg" alt="Reefer truck">
+        <div class="fleet-overlay"><h3><i class="fa-solid fa-snowflake"></i> Reefer</h3></div>
+      </div>
+      <div class="fleet-card reveal">
+        <img src="assets/flatbed.jpg" alt="Flatbed truck">
+        <div class="fleet-overlay"><h3><i class="fa-solid fa-truck-ramp-box"></i> Flatbed</h3></div>
+      </div>
+      <div class="fleet-card reveal">
+        <img src="assets/boxtruck.jpg" alt="Box truck">
+        <div class="fleet-overlay"><h3><i class="fa-solid fa-truck-moving"></i> Box Truck</h3></div>
+      </div>
+      <div class="fleet-card reveal">
+        <img src="assets/stepdeck.jpg" alt="Step deck truck">
+        <div class="fleet-overlay"><h3><i class="fa-solid fa-layer-group"></i> Step Deck</h3></div>
+      </div>
+      <div class="fleet-card reveal">
+        <img src="assets/tanker.jpg" alt="Tanker truck">
+        <div class="fleet-overlay"><h3><i class="fa-solid fa-oil-can"></i> Tanker</h3></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="steps">
+  <div class="container">
+    <div class="center" style="max-width:640px;">
+      <span class="section-tag reveal">Simple Process</span>
+      <h2 class="section-title reveal">Get On The Road <span class="accent">In 4 Steps</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step-card reveal">
+        <div class="step-num">1</div>
+        <h4>Fill The Form</h4>
+        <p>Tell us about you, your truck, and your MC/DOT numbers.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">2</div>
+        <h4>Get Verified</h4>
+        <p>Our team reviews your documents and confirms compliance.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">3</div>
+        <h4>Get Matched</h4>
+        <p>We match you with loads that fit your truck and lanes.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">4</div>
+        <h4>Start Hauling</h4>
+        <p>Hit the road today.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="register" id="register">
+  <div class="container register-wrap">
+    <div class="register-info">
+      <span class="section-tag reveal">Driver Registration</span>
+      <h2 class="section-title reveal">Ready To Roll With <span class="accent">TG Trucking USA?</span></h2>
+      <p class="section-sub reveal">Fill out the form and our recruiting team will reach out within 24 hours.</p>
+      <div class="info-points">
+        <div class="info-point reveal">
+          <i class="fa-solid fa-id-card"></i>
+          <div><h4>Valid MC / DOT Number</h4><p>Required for compliance verification.</p></div>
+        </div>
+        <div class="info-point reveal">
+          <i class="fa-solid fa-truck-front"></i>
+          <div><h4>Any Truck Type Accepted</h4><p>Dry van, reefer, flatbed, box, step deck & more.</p></div>
+        </div>
+        <div class="info-point reveal">
+          <i class="fa-solid fa-clock"></i>
+          <div><h4>Fast 24-Hour Response</h4><p>We move as fast as you do.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card reveal" id="tiltForm">
+      <h3>Post Your Truck For Our Custom Load Offers!</h3>
+      <form id="regForm" novalidate>
+        <input type="hidden" name="_template" value="table">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Origin (City) <span class="req">*</span></label>
+            <input type="text" name="Origin City" placeholder="City" required>
+          </div>
+          <div class="form-group">
+            <label>State <span class="req">*</span></label>
+            <select name="Origin State" class="state-select" required>
+              <option value="" disabled selected>Select State</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Date <span class="req">*</span></label>
+            <input type="date" name="Available Date" required>
+          </div>
+
+          <div class="form-group">
+            <label>Equipment <span class="req">*</span></label>
+            <select name="Equipment Type" required>
+              <option value="" disabled selected>Select Type</option>
+              <option>Dry Van</option>
+              <option>Reefer</option>
+              <option>Flatbed</option>
+              <option>Box Truck</option>
+              <option>Step Deck</option>
+              <option>Tanker</option>
+              <option>Power Only</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Length (ft)</label>
+            <input type="number" name="Trailer Length (ft)" placeholder="e.g. 53" min="0">
+          </div>
+          <div class="form-group">
+            <label>Weight (lbs)</label>
+            <input type="number" name="Weight (lbs)" placeholder="e.g. 45000" min="0">
+          </div>
+
+          <div class="form-group span-2">
+            <label>Destination (City)</label>
+            <input type="text" name="Destination City" placeholder="Preferred Destination City">
+          </div>
+          <div class="form-group">
+            <label>State</label>
+            <select name="Destination State" class="state-select">
+              <option value="" disabled selected>Select State</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>MC Number <span class="req">*</span></label>
+            <input type="text" name="MC Number" placeholder="Enter Your MC Number" required>
+          </div>
+          <div class="form-group">
+            <label>Phone <span class="req">*</span></label>
+            <div class="phone-input">
+              <select name="Country Code">
+                <option value="+1" selected>🇺🇸 +1</option>
+                <option value="+1">🇨🇦 +1</option>
+                <option value="+52">🇲🇽 +52</option>
+              </select>
+              <input type="tel" name="Phone Number" placeholder="Enter Your Phone Number" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email <span class="req">*</span></label>
+            <div class="icon-input">
+              <input type="email" name="Email Address" placeholder="Enter Your Email Address" required>
+              <i class="fa-solid fa-envelope-circle-check"></i>
+            </div>
+          </div>
+        </div>
+        <div class="checkbox-row">
+          <input type="checkbox" id="agree" required>
+          <label for="agree"><strong>Service Fee Acknowledgment:</strong> By checking this box, I confirm my agreement to pay a 5% fee from the gross load amount to TG Trucking USA for each load booked through our services.</label>
+        </div>
+        <button type="submit" class="submit-btn"><i class="fa-solid fa-paper-plane"></i> Post My Truck</button>
+        <div class="form-msg" id="formMsg"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div class="success-overlay" id="successOverlay" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+  <div class="success-card">
+    <button type="button" class="success-close" id="successClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="success-badge">
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="spark" style="--a:0deg;--c:var(--sky);"></span>
+      <span class="spark" style="--a:45deg;--c:#ffd166;"></span>
+      <span class="spark" style="--a:90deg;--c:var(--sky);"></span>
+      <span class="spark" style="--a:135deg;--c:#ffd166;"></span>
+      <span class="spark" style="--a:180deg;--c:var(--sky);"></span>
+      <span class="spark" style="--a:225deg;--c:#ffd166;"></span>
+      <span class="spark" style="--a:270deg;--c:var(--sky);"></span>
+      <span class="spark" style="--a:315deg;--c:#ffd166;"></span>
+      <div class="circle"><i class="fa-solid fa-check"></i></div>
+    </div>
+    <h3 id="successTitle">You're All Set!</h3>
+    <p class="success-text">Thanks for posting your truck with TG Trucking USA. A dispatch representative will contact you within 24 hours to confirm load details and get you rolling.</p>
+    <div class="success-summary" id="successSummary"></div>
+    <button type="button" class="btn btn-primary success-ok" id="successOk"><i class="fa-solid fa-circle-check"></i> Got It, Thanks!</button>
+  </div>
+</div>
+
+<section class="cta-strip">
+  <div class="container">
+    <h2 class="reveal">Questions Before You Sign Up?</h2>
+    <p class="reveal">Call our recruiting line — we're happy to walk you through everything.</p>
+    <a href="tel:+16092882859" class="btn btn-primary reveal" style="display:inline-flex;"><i class="fa-solid fa-phone"></i> (609) 288-2859</a>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="center" style="max-width:640px;">
+      <span class="section-tag reveal">Get In Touch</span>
+      <h2 class="section-title reveal">We're Here <span class="accent">To Help</span></h2>
+      <p class="section-sub center reveal">Have a question before you sign up, or need to reach dispatch? Call or email us directly — we usually respond within the hour.</p>
+    </div>
+    <div class="contact-grid">
+      <a href="tel:+16092882859" class="contact-card reveal">
+        <div class="why-icon"><i class="fa-solid fa-phone"></i></div>
+        <h3>Call Us</h3>
+        <p>Speak directly with our dispatch &amp; recruiting team.</p>
+        <span class="contact-value">(609) 288-2859</span>
+      </a>
+      <a href="mailto:sales@tg-trucking.com" class="contact-card reveal">
+        <div class="why-icon"><i class="fa-solid fa-envelope"></i></div>
+        <h3>Email Us</h3>
+        <p>Send documents, questions, or load details anytime.</p>
+        <span class="contact-value">sales@tg-trucking.com</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="brand" style="color:#fff;">
+          <img src="assets/logo.png" alt="TG Trucking USA" class="logo-img">
+        </a>
+        <p>Connecting professional drivers with reliable freight across the United States. Your road, your rules our support.</p>
+        <div class="social-row">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#why">About Us</a></li>
+          <li><a href="#fleet">Our Fleet</a></li>
+          <li><a href="#steps">How It Works</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Drivers</h4>
+        <ul>
+          <li><a href="#register">Register</a></li>
+          <li><a href="#">Pay & Benefits</a></li>
+          <li><a href="#">Safety</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+16092882859"><i class="fa-solid fa-phone"></i>&nbsp; (609) 288-2859</a></li>
+          <li><a href="mailto:sales@tg-trucking.com"><i class="fa-solid fa-envelope"></i>&nbsp; sales@tg-trucking.com</a></li>
+          <li><a href="#"><i class="fa-solid fa-location-dot"></i>&nbsp; Nationwide, USA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 TG Trucking USA. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile nav toggle
+  const siteNav = document.getElementById('siteNav');
+  const navBurger = document.getElementById('navBurger');
+  const navBurgerIcon = navBurger.querySelector('i');
+  function setNavOpen(open) {
+    siteNav.classList.toggle('mobile-open', open);
+    navBurgerIcon.classList.toggle('fa-bars', !open);
+    navBurgerIcon.classList.toggle('fa-xmark', open);
+  }
+  navBurger.addEventListener('click', () => {
+    setNavOpen(!siteNav.classList.contains('mobile-open'));
+  });
+  siteNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => setNavOpen(false));
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // 3D tilt effect on hero card
+  const tiltCard = document.getElementById('tiltCard');
+  const heroSection = document.querySelector('.hero');
+  heroSection.addEventListener('mousemove', (e) => {
+    const rect = heroSection.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    tiltCard.style.transform = `rotateY(${-14 + x * 18}deg) rotateX(${6 - y * 14}deg)`;
+  });
+  heroSection.addEventListener('mouseleave', () => {
+    tiltCard.style.transform = 'rotateY(-14deg) rotateX(6deg)';
+  });
+
+  // Subtle tilt on form card
+  const tiltForm = document.getElementById('tiltForm');
+  tiltForm.addEventListener('mousemove', (e) => {
+    const rect = tiltForm.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    tiltForm.style.transform = `rotateY(${x * 4}deg) rotateX(${-y * 4}deg)`;
+  });
+  tiltForm.addEventListener('mouseleave', () => {
+    tiltForm.style.transform = 'rotateY(0deg) rotateX(0deg)';
+  });
+
+  // Populate state dropdowns
+  const US_STATES = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
+  document.querySelectorAll('.state-select').forEach(sel => {
+    US_STATES.forEach(state => {
+      const opt = document.createElement('option');
+      opt.textContent = state;
+      sel.appendChild(opt);
+    });
+  });
+
+  // Success modal
+  const successOverlay = document.getElementById('successOverlay');
+  const successSummary = document.getElementById('successSummary');
+  const successClose = document.getElementById('successClose');
+  const successOk = document.getElementById('successOk');
+
+  function openSuccessModal(entry) {
+    const rows = [
+      ['Origin', [entry['Origin City'], entry['Origin State']].filter(Boolean).join(', ')],
+      ['Destination', [entry['Destination City'], entry['Destination State']].filter(Boolean).join(', ') || 'Open / Any'],
+      ['Equipment', entry['Equipment Type']],
+      ['MC Number', entry['MC Number']],
+      ['Phone', [entry['Country Code'], entry['Phone Number']].filter(Boolean).join(' ')],
+      ['Email', entry['Email Address']],
+    ];
+    successSummary.innerHTML = rows.map(([label, value]) => `
+      <div class="success-row"><span class="success-label">${label}</span><span class="success-value">${value}</span></div>
+    `).join('');
+    successOverlay.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSuccessModal() {
+    successOverlay.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  successClose.addEventListener('click', closeSuccessModal);
+  successOk.addEventListener('click', closeSuccessModal);
+  successOverlay.addEventListener('click', (e) => { if (e.target === successOverlay) closeSuccessModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSuccessModal(); });
+
+  // Form handling
+  const form = document.getElementById('regForm');
+  const msg = document.getElementById('formMsg');
+  const submitBtn = form.querySelector('.submit-btn');
+  // TODO: replace YOUR_FORM_ID with the real Formspree form ID once the account/notification email is set up (see formspree.io)
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const required = ['Origin City','Origin State','Available Date','Equipment Type','MC Number','Phone Number','Email Address'];
+    let missing = required.filter(f => !data.get(f) || !data.get(f).toString().trim());
+    const agreed = document.getElementById('agree').checked;
+
+    if (missing.length || !agreed) {
+      msg.textContent = 'Please complete all required fields and accept the service fee agreement before submitting.';
+      msg.className = 'form-msg show error';
+      return;
+    }
+
+    const submissions = JSON.parse(localStorage.getItem('tg_truck_posts') || '[]');
+    const entry = Object.fromEntries(data.entries());
+    entry.submittedAt = new Date().toISOString();
+    submissions.push(entry);
+    localStorage.setItem('tg_truck_posts', JSON.stringify(submissions));
+
+    data.append('_subject', `New Truck Post — ${entry['Origin City']}, ${entry['Origin State']}`);
+    data.append('_replyto', entry['Email Address']);
+
+    submitBtn.disabled = true;
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: data
+      });
+      if (!res.ok) throw new Error('Formspree request failed');
+      msg.className = 'form-msg';
+      openSuccessModal(entry);
+      form.reset();
+    } catch (err) {
+      msg.textContent = 'Your post was saved, but we could not notify our team automatically. Please call us directly to confirm.';
+      msg.className = 'form-msg show error';
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>
