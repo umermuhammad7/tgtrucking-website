@@ -810,10 +810,7 @@
         </a>
         <p>Connecting professional drivers with reliable freight across the United States. Your road, your rules our support.</p>
         <div class="social-row">
-          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61575423513112" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a>
         </div>
       </div>
       <div class="footer-col">
@@ -951,8 +948,10 @@
   const form = document.getElementById('regForm');
   const msg = document.getElementById('formMsg');
   const submitBtn = form.querySelector('.submit-btn');
-  // TODO: replace YOUR_FORM_ID with the real Formspree form ID once the account/notification email is set up (see formspree.io)
-  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+  // Formspree's email-based endpoint (no account needed) — first submission triggers a
+  // one-time confirmation email to sales@tg-trucking.com that must be approved before
+  // submissions start delivering.
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/sales@tg-trucking.com';
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
