@@ -763,6 +763,7 @@
           <input type="checkbox" id="agree" required>
           <label for="agree"><strong>Service Fee Acknowledgment:</strong> By checking this box, I confirm my agreement to pay a 5% fee from the gross load amount to TG Trucking USA for each load booked through our services.</label>
         </div>
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
         <button type="submit" class="submit-btn"><i class="fa-solid fa-paper-plane"></i> Post My Truck</button>
         <div class="form-msg" id="formMsg"></div>
       </form>
@@ -952,6 +953,9 @@
   const successClose = document.getElementById('successClose');
   const successOk = document.getElementById('successOk');
 
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
   function openSuccessModal(entry) {
     const rows = [
       ['Origin', [entry['Origin City'], entry['Origin State']].filter(Boolean).join(', ')],
@@ -962,7 +966,7 @@
       ['Email', entry['Email Address']],
     ];
     successSummary.innerHTML = rows.map(([label, value]) => `
-      <div class="success-row"><span class="success-label">${label}</span><span class="success-value">${value}</span></div>
+      <div class="success-row"><span class="success-label">${label}</span><span class="success-value">${escapeHtml(value)}</span></div>
     `).join('');
     successOverlay.classList.add('show');
     document.body.style.overflow = 'hidden';
