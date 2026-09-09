@@ -686,7 +686,6 @@
       <div class="form-body" id="formBody">
       <h3>Post Your Truck For Our Custom Load Offers!</h3>
       <form id="regForm" novalidate>
-        <input type="hidden" name="_template" value="table">
         <div class="form-grid">
           <div class="form-group">
             <label>Origin (City) <span class="req">*</span></label>
@@ -982,7 +981,8 @@
   const msg = document.getElementById('formMsg');
   const submitBtn = form.querySelector('.submit-btn');
   const checkboxRow = document.querySelector('.checkbox-row');
-  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xppzkynz';
+  const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+  const WEB3FORMS_ACCESS_KEY = 'd82eeb57-7a0d-4ed8-a4c5-139cdbd79e9c';
 
   // Inline collapse / "fill it again" state
   const formCard = document.getElementById('tiltForm');
@@ -1063,17 +1063,21 @@
     submissions.push(entry);
     localStorage.setItem('tg_truck_posts', JSON.stringify(submissions));
 
-    data.append('_subject', `New Truck Post — ${entry['Origin City']}, ${entry['Origin State']}`);
-    data.append('_replyto', entry['Email Address']);
+    const payload = {
+      ...entry,
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: `New Truck Post — ${entry['Origin City']}, ${entry['Origin State']}`,
+      replyto: entry['Email Address'],
+    };
 
     submitBtn.disabled = true;
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch(WEB3FORMS_ENDPOINT, {
         method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: data
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
       });
-      if (!res.ok) throw new Error('Formspree request failed');
+      if (!res.ok) throw new Error('Web3Forms request failed');
       msg.className = 'form-msg';
       showThanks();
       openSuccessModal(entry);
